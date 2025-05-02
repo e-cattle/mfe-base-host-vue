@@ -1,0 +1,34 @@
+{
+  "name": "base",
+  "version": "1.0.0",
+  "workspaces": [
+    "./host_app",
+    "./remote_app1",
+    "./remote_app2"
+  ],
+  "scripts": {
+    "dev:host_app": "npm run -w host_app dev",
+    "dev:remote_app1": "npm run -w remote_app1 dev",
+    "dev:remote_app2": "npm run -w remote_app2 dev",
+    "dev": "run-p dev:*",
+    "build:host_app": "npm run -w host_app build && npm run -w host_app preview",
+    "build:remote_app1": "npm run -w remote_app1 build && npm run -w remote_app1 preview",
+    "build:remote_app2": "npm run -w remote_app2 build && npm run -w remote_app2 preview",
+    "build": "npm-run-all --parallel build:*",
+    "preview": "npm run build --workspaces --if-present",
+    "serve": "npm run serve --workspaces --if-present",
+    "stop": "kill-port --port 4173,5005,5006"
+  },
+  "keywords": [],
+  "author": "André Luís Violin",
+  "description": "<a href=\"https://e-cattle.github.io/\">\r     <img src=\"/src/assets/logo.svg\" alt=\"e-Cattle circle logo\" title=\"Plataforma e-Cattle\" align=\"right\" height=\"90\" />\r </a>",
+  "license": "MIT",
+  "devDependencies": {
+    "@originjs/vite-plugin-federation": "^1.3.5",
+    "kill-port": "^2.0.1",
+    "npm-run-all": "^4.1.5"
+  },
+  "dependencies": {
+    "vue3-apexcharts": "^1.7.0"
+  }
+}
