@@ -1,5 +1,5 @@
 {
-  "name": "e-cattle_host_app",
+  "name": "host_app",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",

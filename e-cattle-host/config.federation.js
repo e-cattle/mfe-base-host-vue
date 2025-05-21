@@ -7,14 +7,9 @@ export default {
   shared: [
     'vue',
     'vuetify',
-    '@apollo/client',
-    '@vue/apollo-composable',
     'axios',
     'core-js',
-    'graphql',
-    'graphql-tag',
     'pinia',
-    'vue-router',
-    'qrcode-vue3'
+    'vue-router'
   ]
 }

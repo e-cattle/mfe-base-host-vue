@@ -2,18 +2,12 @@
   "name": "base",
   "version": "1.0.0",
   "workspaces": [
-    "./host_app",
-    "./remote_app1",
-    "./remote_app2"
+    "./host_app"
   ],
   "scripts": {
     "dev:host_app": "npm run -w host_app dev",
-    "dev:remote_app1": "npm run -w remote_app1 dev",
-    "dev:remote_app2": "npm run -w remote_app2 dev",
     "dev": "run-p dev:*",
     "build:host_app": "npm run -w host_app build && npm run -w host_app preview",
-    "build:remote_app1": "npm run -w remote_app1 build && npm run -w remote_app1 preview",
-    "build:remote_app2": "npm run -w remote_app2 build && npm run -w remote_app2 preview",
     "build": "npm-run-all --parallel build:*",
     "preview": "npm run build --workspaces --if-present",
     "serve": "npm run serve --workspaces --if-present",
