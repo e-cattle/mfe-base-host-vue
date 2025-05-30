@@ -1,6 +1,6 @@
 # mfe-base-host
 
-This is a template with a Base application, which is the starting point for initiating the other `host` and `remote` applications. In addition, a `host` template will also be cloned. In this template, all libraries and plugins are installed, as well as all configurations necessary for building a micro-frontend application with all the features of a PWA. The `host` template comes with a component for accrediting the application in the BigBoxx middleware, to allow access to the sensory data collected by the e-Cattle platform.
+This is a template with a Base application, which is the starting point for initiating the other `host` and `remote` applications. In addition, a `host` template will also be cloned. In this template, all libraries and plugins are installed, as well as all configurations necessary for building a micro-frontend application with all the features of a PWA.
 
 ## 👩🏿‍💻 Configurações
 

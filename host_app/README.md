@@ -1,6 +1,6 @@
 # mfe-base-host
 
-ThIn this template, all libraries and plugins are installed, as well as all configurations necessary for building a micro-frontend application with all the features of a PWA. The `host` template comes with a component for accrediting the application in the BigBoxx middleware, to allow access to the sensory data collected by the e-Cattle platform.
+In this template, all libraries and plugins are installed, as well as all configurations necessary for building a micro-frontend application with all the features of a PWA.
 
 ## 👩🏿‍💻 Configurações
 

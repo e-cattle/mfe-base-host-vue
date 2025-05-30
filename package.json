@@ -1,5 +1,5 @@
 {
-  "name": "mfe-base-host",
+  "name": "mfe-base-host-vue",
   "version": "1.0.0",
   "workspaces": [
     "./host_app"
