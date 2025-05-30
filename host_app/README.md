@@ -34,23 +34,6 @@ const ExposedRemoteComponent = defineAsyncComponent(
 </script>
 ```
 
-## Contribute 🚀
-
-If you want to contribute, clone this repository, create your own working branch and get to work!
-
-```bash
-git clone https://github.com/e-cattle/mfe-base.git
-```
-
-```bash
-git checkout -b feature/NAME
-```
-
-Finally, open a Pull Request explaining the problem solved or the functionality added. If there is one, add screenshots of the visual changes and wait for the review!
-
-[Como criar uma Pull Request](https://www.atlassian.com/br/git/tutorials/making-a-pull-request) |
-[Padrão de Commits](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
-
 ## Licença 📃
 
 This project is licensed under the [MIT](./../LICENSE) license.

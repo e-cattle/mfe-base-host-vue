@@ -67,7 +67,7 @@ const ExposedRemoteComponent = defineAsyncComponent(
 If you want to contribute, clone this repository, create your own working branch and get to work!
 
 ```bash
-git clone https://github.com/e-cattle/mfe-base.git
+git clone https://github.com/e-cattle/mfe-base-host-vue.git
 ```
 
 ```bash
