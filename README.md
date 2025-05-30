@@ -1,106 +1,31 @@
-# e-cattle-base
+# mfe-base-host
 
-Esta é a ferramenta oficial de *scaffolding* para a plataforma e-Cattle, projetada para lhe dar uma vantagem inicial na construção da sua nova aplicação microfrontend. Ela gera um modelo base com todas as configurações necessárias e estrutura de diretórios padrão, permitindo que você inicie o desenvolvimento sem o incômodo de configurar o projeto do zero.
+This is a template with a Base application, which is the starting point for initiating the other `host` and `remote` applications. In addition, a `host` template will also be cloned. In this template, all libraries and plugins are installed, as well as all configurations necessary for building a micro-frontend application with all the features of a PWA. The `host` template comes with a component for accrediting the application in the BigBoxx middleware, to allow access to the sensory data collected by the e-Cattle platform.
 
-Esta aplicação Base é o ponto de partida para iniciar as demais aplicações, *host* e *remote*. Entre os *templates* desenvvolvidos, este é o mais simples, uma vez que seu objetivo é inicialização, em ordem pré-definida, das demais aplicações que fazem parte do projeto de micro-frontend.
+## 👩🏿‍💻 Configurações
 
-Ao utilizar a Base o desenvolvedor não precisará inicializar ou fazer o *build* individual de cada aplicação do projeto.
+**For this project, it is not necessary to make changes to the `package.json` of the Base application.**
 
-## 👩🏿‍💻 Configurações antes de utilizar
+It will only be necessary to change the `package.json` of the Base application if a `remote` application is added. In this case, in addition to the changes to `package.json`, it will also be necessary to include `remote` in the `config.federation.js` file in the `host` application.
 
-Será necessário fazer algumas alterações no arquivo `package.json`, ele será clonado da seguinte forma:
+Let's start with the changes to the `package.json` of the Base application. In the `workspaces` you will need to include the name of the `remote` application, for example, `remote_app` preceded by `.\`. You must also include the port on which the `remote` runs in `stop`. See below:
 
 ```json
 {
   "name": "base",
   "version": "1.0.0",
-  "workspaces": [
-    "./host_app",
-    "./remote_app1",
-    "./remote_app2"
-  ],
+  "workspaces": ["./host_app", "./remote_app"],
   "scripts": {
     "dev:host_app": "npm run -w host_app dev",
-    "dev:remote_app1": "npm run -w remote_app1 dev",
-    "dev:remote_app2": "npm run -w remote_app2 dev",
+    "dev:remote_app": "npm run -w remote_app dev",
     "dev": "run-p dev:*",
     "build:host_app": "npm run -w host_app build && npm run -w host_app preview",
-    "build:remote_app1": "npm run -w remote_app1 build && npm run -w remote_app1 preview",
-    "build:remote_app2": "npm run -w remote_app2 build && npm run -w remote_app2 preview",
-    "build": "npm-run-all --parallel build:*",
-    "preview": "npm run build --workspaces --if-present",
-    "serve": "npm run serve --workspaces --if-present",
-    "stop": "kill-port --port 4173,5005,5006"
-  },
-  "devDependencies": {
-    "@originjs/vite-plugin-federation": "^1.3.5",
-    "kill-port": "^2.0.1",
-    "npm-run-all": "^4.1.5"
-  }
-}
-```
-
-Em `workspaces`, os valores contidos no vetor devem corresponder ao nomes das aplicações criadas, por exemplo se a aplicação *host* for criado com o nome de `e-cattle-host`, assim ele deverá ser declarado no `workspaces`. Além disso, os valores devem estar na ordem que desejar que sejam renderizados, principalmente se ouver dependência entre aplicações.
-
-Supondo que temos apenas duas aplicações, uma hospedeira e outra remota, com os respectivos nomes de `e-cattle=host` e `e-cattle-remote`. O `workspaces` deverá ser definido da seguinte forma:
-
-```json
-{
-  ...
-  "workspaces": [
-    "./e-cattle-host",
-    "./e-cattle-remote"
-  ],
-  ...
-}
-```
-
-Da mesma forma, deverá alterar e excluir/incluir os `scripts` correspondentes às quantidades e aos nomes escolhidos. Dando contituidade ao exemplo, os `scripts` ficariam assim:
-
-```json
-{
-  ...
-  "scripts": {
-    "dev:e-cattle-host": "npm run -w e-cattle-host dev",
-    "dev:e-cattle-remote": "npm run -w e-cattle-remote dev",
-    "dev": "run-p dev:*",
-    "build:e-cattle-host": "npm run -w e-cattle-host build && npm run -w e-cattle-host preview",
-    "build:e-cattle-remote": "npm run -w e-cattle-remote build && npm run -w e-cattle-remote preview",
+    "build:remote_app": "npm run -w remote_app build && npm run -w remote_app preview",
     "build": "npm-run-all --parallel build:*",
     "preview": "npm run build --workspaces --if-present",
     "serve": "npm run serve --workspaces --if-present",
     "stop": "kill-port --port 4173,5005"
   },
-  ...
-}
-```
-
-*Scripts* de *remotes* e portas não utilizadas devem ser excluídos.
-
-Caso resolva incluir mais alguma aplicação remota, deverá incluir seus dados, incluindo a porta, no `package.json` da Base:
-
-```json
-{
-  "name": "base",
-  "version": "1.0.0",
-  "workspaces": [
-    "./e-cattle-host",
-    "./e-cattle-remote",
-    "./e-cattle-new-remote"
-  ],
-  "scripts": {
-    "dev:e-cattle-host": "npm run -w e-cattle-host dev",
-    "dev:e-cattle-remote": "npm run -w e-cattle-remote dev",
-    "dev:e-cattle-new-remote": "npm run -w e-cattle-new-remote dev",
-    "dev": "run-p dev:*",
-    "build:e-cattle-host": "npm run -w e-cattle-host build && npm run -w e-cattle-host preview",
-    "build:e-cattle-remote": "npm run -w e-cattle-remote build && npm run -w e-cattle-remote preview",
-    "build:e-cattle-remote": "npm run -w e-cattle-new-remote build && npm run -w e-cattle-new-remote preview",
-    "build": "npm-run-all --parallel build:*",
-    "preview": "npm run build --workspaces --if-present",
-    "serve": "npm run serve --workspaces --if-present",
-    "stop": "kill-port --port 4173,5005,5006"
-  },
   "devDependencies": {
     "@originjs/vite-plugin-federation": "^1.3.5",
     "kill-port": "^2.0.1",
@@ -109,23 +34,51 @@ Caso resolva incluir mais alguma aplicação remota, deverá incluir seus dados,
 }
 ```
 
-## Contribuir 🚀
+Once this is done, you must change the `config.federation.js` file in the `host` application. Just include the component name and the address of the `remoteEntry.js` that was exposed in the `remote`. Assuming the name is `ExposedRemoteComponent` and the path `https://localhost:5005/assets/remoteEntry.js`, the `config.federation.js` of the `host` would look like this:
 
-Se quiser contribuir, clone este repositório, crie sua própria *branch* de trabalho e mãos à obra!
+```javascript
+export default {
+  name: "app",
+  remotes: {
+    // Exemplo de declaração de um remote na aplicação host
+    ExposedRemoteComponent: "https://localhost:5005/assets/remoteEntry.js",
+  },
+  shared: ["vue", "vuetify", "axios", "core-js", "pinia", "vue-router"],
+};
+```
+
+From there, the `remote` component(s) can be used on the `host`. Example of using the component named `ExposedRemoteComponent` being used on the `host`, both using the Vue.js framework:
+
+```javascript
+<template>
+  <ExposedRemoteComponent v-if="!!ExposedRemoteComponent" />
+</template>
+
+<script setup>
+import { defineAsyncComponent } from 'vue'
+const ExposedRemoteComponent = defineAsyncComponent(
+  () => import('remote_app/ExposedRemoteComponent')
+)
+</script>
+```
+
+## Contribute 🚀
+
+If you want to contribute, clone this repository, create your own working branch and get to work!
 
 ```bash
-git clone https://github.com/andre-violin/e-cattle-base.git
+git clone https://github.com/e-cattle/mfe-base.git
 ```
 
 ```bash
 git checkout -b feature/NAME
 ```
 
-No final, abra um *Pull Request* explicando o problema resolvido ou a funcionalidade adicionada. Se existir, adicione capturas de tela das modificações visuais e aguarde pela revisão!
+Finally, open a Pull Request explaining the problem solved or the functionality added. If there is one, add screenshots of the visual changes and wait for the review!
 
 [Como criar uma Pull Request](https://www.atlassian.com/br/git/tutorials/making-a-pull-request) |
 [Padrão de Commits](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
 
 ## Licença 📃
 
-Este projeto está sob a licença [MIT](./../LICENSE) license
+This project is licensed under the [MIT](./../LICENSE) license.

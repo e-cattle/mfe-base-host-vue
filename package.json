@@ -1,5 +1,5 @@
 {
-  "name": "base",
+  "name": "mfe-base-host",
   "version": "1.0.0",
   "workspaces": [
     "./host_app"
@@ -11,7 +11,7 @@
     "build": "npm-run-all --parallel build:*",
     "preview": "npm run build --workspaces --if-present",
     "serve": "npm run serve --workspaces --if-present",
-    "stop": "kill-port --port 4173,5005,5006"
+    "stop": "kill-port --port 4173"
   },
   "keywords": [],
   "author": "André Luís Violin",
